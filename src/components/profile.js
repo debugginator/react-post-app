@@ -14,7 +14,7 @@ const Profile = (props) => {
         pathname: `${props.match.url}/posts`
       }}> go to /profile/posts </Link>
 
-      {redir()}
+      {/*{redir()}*/}
     </div>
   );
 };
