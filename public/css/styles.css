@@ -51,3 +51,13 @@ body {
     color: darkred;
     margin: 0px;
 }
+
+.dev-note {
+    color: var(--martian-darkgray);
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.dev-note:hover {
+    cursor: pointer;
+}

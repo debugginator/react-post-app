@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import AuthService from '../services/authentication.service';
 
 class LogIn extends Component {
 
@@ -8,38 +9,46 @@ class LogIn extends Component {
     password: "",
   };
 
+  componentDidMount() {
+    if (AuthService.getCurrentUser()) {
+      this.props.history.push('/app');
+    }
+  }
+
   onEmailChange = event => this.setState({ ...this.state, email: event.target.value });
 
   onPasswordChange = event => this.setState({ ...this.state, password: event.target.value });
 
+  autoFillForm = () => this.setState({ email: "user1@test.com", password: "test1" });
+
   handleSubmit = event => {
     event.preventDefault(); // do not reload
 
-    if (this.validateUser()) {
-      this.props.history.push("/app");
+    let user = this.logIn();
+    if (user) {
+      this.props.history.push('/app');
     } else {
       this.setState({ ...this.state, error: "Wrong email or password." });
     }
   };
 
-  validateUser = () => {
+  logIn = () => {
     let { email, password } = this.state;
-    if (email === "user1@test.com" && password === "test1") return true;
-    if (email === "user2@test.com" && password === "test2") return true;
-    return false;
+    return AuthService.logIn(email, password);
   };
 
   render() {
     return (
       <div className="form-container">
         <img className="mb-4"
+             alt="Posts logo"
              src={require('../assets/icon.ico')}
              width={70}
              height={70}
         />
         <h3> Log In </h3>
         <p className="error-message"> {this.state.error} </p>
-      <form
+        <form
           className="login-form"
           onSubmit={this.handleSubmit}>
           <div className="form_element">
@@ -65,6 +74,10 @@ class LogIn extends Component {
           </div>
           <button className="btn btn-lg btn-block btn-martian" type="submit">Log in</button>
         </form>
+        <p
+          className="dev-note"
+          onClick={this.autoFillForm}
+        > Click here to automatically fill email and password </p>
       </div>
     );
   }
