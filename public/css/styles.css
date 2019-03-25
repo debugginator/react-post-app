@@ -115,5 +115,6 @@ body {
 }
 
 .title-header {
-    margin: 2rem;
+    margin: auto;
+    width: 30%;
 }

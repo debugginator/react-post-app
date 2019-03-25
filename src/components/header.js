@@ -12,14 +12,14 @@ const Header = () => (
       <div className="navbar-nav">
         <Link to="/app" className="nav-item nav-link active"> Posts </Link>
       </div>
+    </div>
 
-      <div className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <Link to="/"
-              className="nav-item nav-link"
-              onClick={AuthService.logOut}>
-          <strong>Log out</strong>
-        </Link>
-      </div>
+    <div className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <Link to="/"
+            className="nav-item nav-link"
+            onClick={AuthService.logOut}>
+        <strong>Log out</strong>
+      </Link>
     </div>
   </header>
 );
