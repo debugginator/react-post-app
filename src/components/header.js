@@ -1,18 +1,27 @@
 import React from 'react';
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import AuthService from "../services/authentication.service";
 
 const Header = () => (
-  <header>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-martian">
-      <Link className="navbar-brand">Interview App</Link>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <Link className="nav-item nav-link active"> Posts </Link>
-        </div>
-        {/*<Link className="form-control">Log out</Link>*/}
+  <header className="navbar navbar-expand-lg navbar-dark bg-martian-darkgray">
+    <Link to="/app" className="navbar-brand"> Interview App </Link>
+
+    <div className="collapse navbar-collapse">
+
+      <div className="navbar-nav">
+        <Link to="/app" className="nav-item nav-link active"> Posts </Link>
       </div>
-    </nav>
+
+      <div className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <Link to="/"
+              className="nav-item nav-link"
+              onClick={AuthService.logOut}>
+          <strong>Log out</strong>
+        </Link>
+      </div>
+    </div>
   </header>
 );
 
-export default ()=><div />; //todo
+export default Header;

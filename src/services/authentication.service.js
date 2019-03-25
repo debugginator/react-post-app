@@ -1,24 +1,14 @@
-const validUsers = [
-  {
-    name: "user1",
-    email: "user1@test.com",
-    password: "test1"
-  },
-  {
-    name: "user2",
-    email: "user2@test.com",
-    password: "test2"
-  }
-];
+import { getAllUsers } from "../storage/user.storage";
 
 
 /** This function fakes logging in a user and persists the user in an insecure manner.
  * If this were a production application user authentication would be handled on the server
  * which is communicating with the database. */
 const logIn = (email, password) => {
-  for (let user of validUsers) {
+  let users = getAllUsers();
+  for (let user of users) {
     if (email === user.email && password === user.password) {
-      localStorage.setItem("user", user);
+      sessionStorage.setItem("user", user);
       return user;
     }
   }
@@ -26,15 +16,18 @@ const logIn = (email, password) => {
 };
 
 const logOut = () => {
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("user");
   return true;
 };
 
-const getCurrentUser = () => localStorage.getItem("user");
+const getCurrentUser = () => sessionStorage.getItem("user");
+
+const isAuthenticated = () => !!getCurrentUser();
 
 const AuthService = {
   getCurrentUser,
   logIn,
-  logOut
+  logOut,
+  isAuthenticated
 };
 export default AuthService;

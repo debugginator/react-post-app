@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
 import AuthService from '../services/authentication.service';
+import { fakeUser } from "../storage/user.storage";
 
 class LogIn extends Component {
 
+  /** Initial state */
   state = {
     email: "",
     password: "",
   };
 
   componentDidMount() {
-    if (AuthService.getCurrentUser()) {
+    if (AuthService.isAuthenticated()) {
       this.props.history.push('/app');
     }
   }
@@ -19,7 +21,7 @@ class LogIn extends Component {
 
   onPasswordChange = event => this.setState({ ...this.state, password: event.target.value });
 
-  autoFillForm = () => this.setState({ email: "user1@test.com", password: "test1" });
+  autoFillForm = () => this.setState({ email: fakeUser.email, password: fakeUser.password });
 
   handleSubmit = event => {
     event.preventDefault(); // do not reload
