@@ -23,13 +23,12 @@ export const fetchPostsByAuthor = userId => {
 function mapCommentsByPost(comments) {
   let commentsByPost = {};
   for (let comment of comments) {
-    let comms = commentsByPost[comment.postId] || [];
-    comms.push(comment);
-    commentsByPost[comment.postId] = comms;
+    let commentsOfPost = commentsByPost[comment.postId] || [];
+    commentsOfPost.push(comment);
+    commentsByPost[comment.postId] = commentsOfPost;
   }
   return commentsByPost;
 }
-
 
 export async function fetchPostsWithCommentsAndAuthor() {
 

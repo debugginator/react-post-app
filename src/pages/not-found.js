@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import withGreeting from "../hoc/withGreeting";
 
 // Constants
 const ERROR_CODE = 404;
@@ -12,8 +13,9 @@ const NotFound = () => (
     <h1>{ERROR_CODE}</h1>
     <h2>{ERROR_MESSAGE}</h2>
     <p>{ERROR_DESCRIPTION}</p>
-    <Link to="/app" > {HOME_LINK_TEXT} </Link>
+    <Link to="/app"> {HOME_LINK_TEXT} </Link>
   </div>
 );
 
-export default NotFound;
+
+export default withGreeting(NotFound);

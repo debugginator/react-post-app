@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import AuthService from "../services/authentication.service";
+import withGreeting from "../hoc/withGreeting";
 
 const Header = () => (
   <header className="navbar navbar-expand-lg navbar-dark bg-martian-darkgray">
@@ -24,4 +25,5 @@ const Header = () => (
   </header>
 );
 
-export default Header;
+
+export default withGreeting(Header);

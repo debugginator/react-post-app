@@ -1,12 +1,12 @@
 /** An array containing hardcoded mock users that are considered valid for authentication. */
 const validUsers = [
   {
-    name: "user1",
+    name: "John",
     email: "user1@test.com",
     password: "test1"
   },
   {
-    name: "user2",
+    name: "Peter",
     email: "user2@test.com",
     password: "test2"
   }

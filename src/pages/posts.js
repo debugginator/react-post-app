@@ -2,12 +2,11 @@ import React, { PureComponent } from 'react';
 import PostItem from '../components/post_item';
 
 import { fetchPostsWithCommentsAndAuthor } from "../api/resource-access";
-import { Loader } from "../components/loader";
+import Loader from "../components/loader";
+import withGreeting from "../hoc/withGreeting";
 
-//todo pagination
-const buildPostItems = items => items.map(item => <PostItem key={item.post.id} item={item}/>);
 
-export default class Posts extends PureComponent {
+class Posts extends PureComponent {
 
   state = {
     isLoading: true,
@@ -16,11 +15,17 @@ export default class Posts extends PureComponent {
     filteredItems: undefined,
   };
 
+  buildPostItems = items => items.map(
+    item => <PostItem message={this.props.message}
+                      key={item.post.id}
+                      item={item}/>
+  );
+
   componentDidMount() {
     fetchPostsWithCommentsAndAuthor()
       .then(allPosts => this.setState({
         allPosts,
-        postItems: buildPostItems(allPosts),
+        postItems: this.buildPostItems(allPosts),
         isLoading: false
       }))
       .catch(err => console.log(err));
@@ -31,14 +36,14 @@ export default class Posts extends PureComponent {
     let filteredPosts = this.state.allPosts.filter(post =>
       post.author.name
         .toLowerCase()
-        .startsWith(filter.toLowerCase())
+        .includes(filter.toLowerCase())
     );
-    let filteredItems = buildPostItems(filteredPosts);
+    let filteredItems = this.buildPostItems(filteredPosts);
     this.setState({ filteredItems });
   };
 
   render() {
-    if (this.state.isLoading) return <Loader/>;
+    if (this.state.isLoading) return <Loader message={this.props.message}/>;
 
     return (
       <div className="animate-bottom posts-container mx-auto">
@@ -58,3 +63,5 @@ export default class Posts extends PureComponent {
     );
   }
 }
+
+export default withGreeting(Posts);

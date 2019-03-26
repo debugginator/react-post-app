@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import AuthService from '../services/authentication.service';
 import { fakeUser } from "../storage/user.storage";
+import withGreeting from "../hoc/withGreeting";
 
 class LogIn extends Component {
 
@@ -28,7 +29,7 @@ class LogIn extends Component {
 
     let user = this.logIn();
     if (user) {
-      this.props.history.push('/app');
+      this.props.history.push('/app', this.props.message);
     } else {
       this.setState({ ...this.state, error: "Wrong email or password." });
     }
@@ -85,4 +86,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withGreeting(LogIn);

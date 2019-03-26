@@ -2,4 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const HELLO_MESSAGE = "Hello from";
+
+ReactDOM.render(<App message={HELLO_MESSAGE} />, document.getElementById('root'));

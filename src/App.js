@@ -8,27 +8,32 @@ import Posts from './pages/posts';
 import PostItem from './components/post_item'
 import Header from "./components/header";
 import NotFound from "./pages/not-found";
+import Post from "./pages/post";
+import withGreeting from "./hoc/withGreeting";
 
 
-const App = () =>
-  (
-    <BrowserRouter>
-      <div>
-        <Header/>
-        <Switch>
-          <Route path="/posts/:id" component={PostItem}/>
-          <Route path="/app"
-                 exact
-                 render={routeProps => (
-                   AuthService.getCurrentUser() ?
-                     <Posts {...routeProps} /> : <Redirect to="/"/>
-                 )}
-          />
-          <Route path="/" exact component={LogIn}/>
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+const App = ({ message }) => (
+  <BrowserRouter>
+    <div>
+      <Header message={message}/>
+      <Switch>
+        <Route path="/posts/:id"
+               render={routeProps => <Post message={message} {...routeProps} />}
+        />
+        <Route path="/app"
+               exact
+               render={routeProps => (
+                 AuthService.isAuthenticated() ?
+                   <Posts {...routeProps} message={message}/> : <Redirect to="/"/>
+               )}
+        />
+        <Route path="/"
+               exact
+               render={routeProps => <LogIn  {...routeProps} message={message}/>}/>
+        <Route render={routeProps => <NotFound {...routeProps} message={message}/>}/>
+      </Switch>
+    </div>
+  </BrowserRouter>
+);
 
-export default App;
+export default withGreeting(App);

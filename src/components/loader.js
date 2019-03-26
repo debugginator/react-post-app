@@ -1,3 +1,6 @@
 import React from 'react';
+import withGreeting from "../hoc/withGreeting";
 
-export const Loader = () => <div id="loader" />;
+const Loader = () => <div id="loader"/>;
+
+export default withGreeting(Loader);
