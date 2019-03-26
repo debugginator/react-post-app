@@ -31,16 +31,19 @@
 }
 
 .posts-container {
-    max-width: 75%;
+    max-width: 75rem;
     margin-top: 1rem;
 }
 
 .title-header {
     margin: auto;
-    width: 30%;
 }
 
 .link-no-style {
     color: inherit!important;
     text-decoration: inherit!important;
+}
+
+.no-overflow {
+    overflow: auto;
 }
