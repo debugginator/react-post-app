@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import withGreeting from "../hoc/withGreeting";
 
 // Constants
@@ -17,5 +19,8 @@ const NotFound = () => (
   </div>
 );
 
+NotFound.propTypes = {
+  message: PropTypes.string
+};
 
 export default withGreeting(NotFound);

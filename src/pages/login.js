@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import AuthService from '../services/authentication.service';
 import { fakeUser } from "../storage/user.storage";
@@ -12,18 +13,24 @@ class LogIn extends Component {
     password: "",
   };
 
+  /** Lifecycle method.
+   *  Routes to login page if the user is not authenticated.*/
   componentDidMount() {
     if (AuthService.isAuthenticated()) {
       this.props.history.push('/app');
     }
   }
 
+  /** Input handler that sets the email field in the state of the component with the new value. */
   onEmailChange = event => this.setState({ ...this.state, email: event.target.value });
 
+  /** Input handler that sets the password field in the state of the component with the new value. */
   onPasswordChange = event => this.setState({ ...this.state, password: event.target.value });
 
+  /** Utility method which fills the form with valid (but mock) user data. */
   autoFillForm = () => this.setState({ email: fakeUser.email, password: fakeUser.password });
 
+  /** Login form submit handler */
   handleSubmit = event => {
     event.preventDefault(); // do not reload
 
@@ -35,7 +42,6 @@ class LogIn extends Component {
       this.setState({ ...this.state, error: "Wrong email or password." });
     }
   };
-
 
   render() {
     return (
@@ -75,11 +81,17 @@ class LogIn extends Component {
           <button className="btn btn-lg btn-block btn-martian" type="submit">Log in</button>
         </form>
         <p className="dev-note"
-          onClick={this.autoFillForm}
+           onClick={this.autoFillForm}
         > Click here to automatically fill email and password </p>
       </div>
     );
   }
 }
+
+LogIn.propTypes = {
+  history: PropTypes.object,
+  message: PropTypes.string,
+  logIn: PropTypes.func
+};
 
 export default withGreeting(LogIn);

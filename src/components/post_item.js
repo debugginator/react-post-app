@@ -1,12 +1,21 @@
 import React from 'react';
-import CommentSection from "./commentSection";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
+import CommentSection from "./commentSection";
 import withGreeting from "../hoc/withGreeting";
 
+/**
+ * Functional component which renders a post item consisting of a post, it's author and comments.
+ * @param item Object containing a post, an author and post comments
+ * @param message Greeting message
+ * @param disableLink Indicates if the post should be clickable as a link to it's own page
+ */
 const PostItem = ({ item, message, disableLink }) => {
 
   let { post, author, comments } = item;
 
+  /** Link click handler, disables following the post's link if the component received the disableLink prop as true. */
   const clickHandler = (e) => disableLink ? e.preventDefault() : null;
 
   return (
@@ -27,6 +36,12 @@ const PostItem = ({ item, message, disableLink }) => {
       </div>
     </div>
   );
+};
+
+PostItem.propTypes = {
+  item: PropTypes.object,
+  message: PropTypes.string,
+  disableLink: PropTypes.bool,
 };
 
 export default withGreeting(PostItem);

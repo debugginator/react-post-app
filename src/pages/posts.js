@@ -1,27 +1,45 @@
 import React, { PureComponent } from 'react';
-import PostItem from '../components/post_item';
+import PropTypes from 'prop-types';
 
 import { fetchPostsWithCommentsAndAuthor } from "../api/resource-access";
-import Loader from "../components/loader";
+
+// Components
 import withGreeting from "../hoc/withGreeting";
+import PostItem from '../components/post_item';
+import Loader from "../components/loader";
 import InfoBox from "../components/info_box";
 
 
+/**
+ * Component which renders the Posts page (on the /app route), displaying all the posts and their comments.
+ * Enables filtering components by the authors' full name.
+ */
 class Posts extends PureComponent {
 
+  /** Initial state */
   state = {
+    /** Is the component still loading posts from the api */
     isLoading: true,
+    /** Placeholder for all posts array */
     allPosts: undefined,
+    /** Placeholder for the render-ready array of post items */
     postItems: undefined,
+    /** Placeholder for the filtered render-ready array of post items */
     filteredItems: undefined,
   };
 
+  /**
+   * Builds a render-ready array of JSX elements.
+   * @param items Array of objects of the following form {post, author, comments}.
+   * @returns {array}
+   */
   buildPostItems = items => items.map(
     item => <PostItem message={this.props.message}
                       key={item.post.id}
                       item={item}/>
   );
 
+  /** Lifecycle method used for fetching all the posts from the API. */
   componentDidMount() {
     fetchPostsWithCommentsAndAuthor()
       .then(allPosts => this.setState({
@@ -32,6 +50,7 @@ class Posts extends PureComponent {
       .catch(err => console.log(err));
   }
 
+  /** Handles the event of a new input in the filter input field. */
   onFilterChange = event => {
     let filter = event.target.value;
     let filteredPosts = this.state.allPosts.filter(post =>
@@ -72,5 +91,9 @@ class Posts extends PureComponent {
     );
   }
 }
+
+Posts.propTypes = {
+  message: PropTypes.string,
+};
 
 export default withGreeting(Posts);

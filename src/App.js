@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import AuthService from "./services/authentication.service";
 import withGreeting from "./hoc/withGreeting";
@@ -13,15 +14,23 @@ import Post from "./pages/post";
 
 
 /**
- * This functional component is the entry point of this web application.
+ * This component is the entry point of this web application.
  * It displays a header and creates page routes mapping them to their respective URIs.
  */
 class App extends PureComponent {
 
+  /** Initial state of the component */
   state = {
+    /** Boolean flag used for toggling the display of the "Log out" button in the header. */
     loggedIn: AuthService.isAuthenticated(),
   };
 
+  /**
+   * Used for authenticating a user using email and password.
+   * @param email User's email
+   * @param password User's password
+   * @returns user object or false
+   */
   logIn = (email, password) => {
     let user = AuthService.logIn(email, password);
     if (user) {
@@ -31,9 +40,10 @@ class App extends PureComponent {
     return user;
   };
 
+  /** Logs the current user out from his session. */
   logOut = () => {
     AuthService.logOut();
-    this.setState({loggedIn:false});
+    this.setState({ loggedIn: false });
   };
 
   render() {
@@ -69,5 +79,9 @@ class App extends PureComponent {
     );
   }
 }
+
+App.propTypes = {
+  message: PropTypes.string
+};
 
 export default withGreeting(App);

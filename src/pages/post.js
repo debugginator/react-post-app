@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import PostItem from "../components/post_item";
 import { fetchPost, fetchPostComments, fetchUser } from "../api/resource-access";
@@ -7,12 +8,18 @@ import withGreeting from "../hoc/withGreeting";
 import NotFound from "./not-found";
 
 
+/**
+ * Component which renders a single post and it's comments.
+ */
 class Post extends PureComponent {
 
+  /** Initial state */
   state = {
+    /** Placeholder for object of form { post, author, comments }.  */
     item: undefined,
   };
 
+  /** Lifecycle method used here to fetch resources from the API and save it into the components state. */
   async componentDidMount() {
     // Fetch resources from API
     let post = await fetchPost(this.props.match.params.id);
@@ -41,5 +48,9 @@ class Post extends PureComponent {
   }
 
 }
+
+Post.propTypes = {
+  message: PropTypes.string
+};
 
 export default withGreeting(Post);
