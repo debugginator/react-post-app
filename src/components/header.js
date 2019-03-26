@@ -5,14 +5,8 @@ import withGreeting from "../hoc/withGreeting";
 
 const Header = (props) => (
   <header className="navbar navbar-expand-lg navbar-dark bg-martian-darkgray">
-    <Link to="/app" className="navbar-brand"> Interview App </Link>
+    <Link to="/app" className="navbar-brand"> Posts </Link>
 
-    <div className="collapse navbar-collapse">
-
-      <div className="navbar-nav">
-        <Link to="/app" className="nav-item nav-link active"> Posts </Link>
-      </div>
-    </div>
 
     <div className="navbar-nav flex-row ml-md-auto d-none d-md-flex">
       <Link to="/"
