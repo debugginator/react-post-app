@@ -1,6 +1,6 @@
 import React from 'react';
 import Comment from "./comment";
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "./hoc/withGreeting";
 import PropTypes from 'prop-types';
 
 

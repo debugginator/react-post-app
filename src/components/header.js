@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "./hoc/withGreeting";
 
 /** Header component used throughout the app. Renders a navigation bar at the top of the screen. */
 const Header = (props) => (

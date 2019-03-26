@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "../components/hoc/withGreeting";
 
 // Constants
 const ERROR_CODE = 404;

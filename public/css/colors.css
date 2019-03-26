@@ -8,10 +8,6 @@
     --martian-lightgray: #F5F5F5;
 }
 
-.bg-martian-red {
-    background-color: var(--martian-red) !important;
-}
-
 .bg-martian-darkgray {
     background-color: var(--martian-darkgray) !important;
 }

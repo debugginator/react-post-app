@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchPostsWithCommentsAndAuthor } from "../api/resource-access";
 
 // Components
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "../components/hoc/withGreeting";
 import PostItem from '../components/post_item';
 import Loader from "../components/loader";
 import InfoBox from "../components/info_box";

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AuthService from '../services/authentication.service';
 import { fakeUser } from "../storage/user.storage";
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "../components/hoc/withGreeting";
 
 class LogIn extends Component {
 

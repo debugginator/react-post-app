@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import AuthService from "./services/authentication.service";
-import withGreeting from "./hoc/withGreeting";
+import withGreeting from "./components/hoc/withGreeting";
 
 // Components
 import LogIn from './pages/login';

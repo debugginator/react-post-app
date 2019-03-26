@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PostItem from "../components/post_item";
 import { fetchPost, fetchPostComments, fetchUser } from "../api/resource-access";
 import Loader from "../components/loader";
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "../components/hoc/withGreeting";
 import NotFound from "./not-found";
 
 
@@ -50,7 +50,7 @@ class Post extends PureComponent {
 }
 
 Post.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
 };
 
 export default withGreeting(Post);

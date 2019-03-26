@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withGreeting from "../hoc/withGreeting";
+import withGreeting from "./hoc/withGreeting";
 
 /** Simple component which renders an info box containing the infoMessage.
  *  @param infoMessage Message to render on screen

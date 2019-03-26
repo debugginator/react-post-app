@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-import CommentSection from "./commentSection";
-import withGreeting from "../hoc/withGreeting";
+import CommentSection from "./comment_section";
+import withGreeting from "./hoc/withGreeting";
 
 /**
  * Functional component which renders a post item consisting of a post, it's author and comments.
