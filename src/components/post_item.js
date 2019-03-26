@@ -3,13 +3,17 @@ import CommentSection from "./commentSection";
 import { Link } from "react-router-dom";
 import withGreeting from "../hoc/withGreeting";
 
-const PostItem = ({ item, message }) => {
+const PostItem = ({ item, message, disableLink }) => {
 
   let { post, author, comments } = item;
+
+  const clickHandler = (e) => disableLink ? e.preventDefault() : null;
 
   return (
     <div className="card bg-light mb-3">
       <Link className="card-body link-no-style"
+            onClick={clickHandler}
+            style={disableLink ? { cursor: "default" } : {}}
             to={"/posts/" + post.id}>
         <h4 className="card-title"> {post.title} </h4>
         <h6 className="card-subtitle mb-2 text-muted"> By: {author.name} </h6>

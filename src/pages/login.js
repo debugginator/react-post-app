@@ -54,7 +54,7 @@ class LogIn extends Component {
           <div className="form_element">
             <input
               type="email"
-              className="form-control"
+              className="form-control mb-1"
               placeholder="Email address"
               required
               autoFocus

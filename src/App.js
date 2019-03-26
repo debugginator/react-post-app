@@ -46,6 +46,7 @@ class App extends PureComponent {
         <Header message={message} loggedIn={loggedIn} logOut={this.logOut}/>
         <Switch>
           <Route path="/posts/:id"
+                 exact
                  render={routeProps => <Post message={message} {...routeProps} />}
           />
           <Route path="/app"
