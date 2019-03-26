@@ -18,7 +18,8 @@ const PostItem = ({ item, message }) => {
 
       <div className="comment-box card-footer">
         <h5> Comments </h5>
-        {comments.length !== 0 ? <CommentSection message={message} comments={comments}/> : <p> Be the first to comment. </p>}
+        {comments.length !== 0 ?
+          <CommentSection message={message} comments={comments}/> : <p> Be the first to comment. </p>}
       </div>
     </div>
   );

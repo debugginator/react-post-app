@@ -27,7 +27,8 @@ class LogIn extends Component {
   handleSubmit = event => {
     event.preventDefault(); // do not reload
 
-    let user = this.logIn();
+    let { email, password } = this.state;
+    let user = this.props.logIn(email, password);
     if (user) {
       this.props.history.push('/app', this.props.message);
     } else {
@@ -35,10 +36,6 @@ class LogIn extends Component {
     }
   };
 
-  logIn = () => {
-    let { email, password } = this.state;
-    return AuthService.logIn(email, password);
-  };
 
   render() {
     return (
@@ -77,8 +74,7 @@ class LogIn extends Component {
           </div>
           <button className="btn btn-lg btn-block btn-martian" type="submit">Log in</button>
         </form>
-        <p
-          className="dev-note"
+        <p className="dev-note"
           onClick={this.autoFillForm}
         > Click here to automatically fill email and password </p>
       </div>
