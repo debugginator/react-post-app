@@ -1,0 +1,21 @@
+/* Color scheme */
+
+:root {
+    --martian-red: #EF4059;
+    --martian-dark: #3D3D3D;
+    --martian-darkgray: #8E8E8E;
+    --martian-gray: #C7C7C7;
+    --martian-lightgray: #F5F5F5;
+}
+
+.bg-martian-red {
+    background-color: var(--martian-red) !important;
+}
+
+.bg-martian-darkgray {
+    background-color: var(--martian-darkgray) !important;
+}
+
+body {
+    background-color: var(--martian-lightgray) !important;
+}
